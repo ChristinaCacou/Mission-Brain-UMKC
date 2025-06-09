@@ -16,10 +16,12 @@
       color: #e74c3c;
       margin-left: 10px;
     }
+    .card + .card {
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body onload="startTimer()">
-  <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">🧠 CráneoClave</a>
@@ -45,10 +47,9 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="container mt-4">
     <div class="card p-4">
-      <h2>Select Your Language</h2>
+      <h4 class="mb-3">🌍 Select Your Language</h4>
       <select id="languageSelect" class="form-select w-auto" onchange="switchLanguage()">
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -57,12 +58,62 @@
         <option value="gn">🇵🇾 Guaraní</option>
       </select>
     </div>
+
+    <div id="checklistSection" class="card p-4 mt-4" style="display:none">
+      <h4 id="checklistTitle">📝 Stroke Symptom Checklist</h4>
+      <form id="checklistForm">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symptom" value="face" id="face">
+          <label class="form-check-label" for="face" data-key="face">Facial droop</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symptom" value="arm" id="arm">
+          <label class="form-check-label" for="arm" data-key="arm">Arm weakness</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symptom" value="speech" id="speech">
+          <label class="form-check-label" for="speech" data-key="speech">Slurred speech</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symptom" value="vision" id="vision">
+          <label class="form-check-label" for="vision" data-key="vision">Vision changes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="symptom" value="time" id="time">
+          <label class="form-check-label" for="time" data-key="time">Sudden onset</label>
+        </div>
+        <button type="button" class="btn btn-primary mt-3" onclick="evaluateChecklist()">Submit</button>
+        <button type="button" class="btn btn-secondary mt-3 ms-2" onclick="speakChecklist()">🔊 Speak Symptoms</button>
+      </form>
+    </div>
+
+    <div id="scanSection" class="card p-4 mt-4" style="display:none">
+      <h4>👁️ Pupil Symmetry Scan</h4>
+      <p>This step uses your phone's camera to check for unequal pupils (anisocoria).</p>
+      <button class="btn btn-warning" onclick="alert('Simulated scan result: Pupils symmetric')">Run Pupil Scan</button>
+    </div>
+
+    <div id="mapSection" class="card p-4 mt-4" style="display:none">
+      <h4>📍 Nearest Stroke Center</h4>
+      <p>We are using your location to find the nearest CT-capable hospital.</p>
+      <div class="bg-light p-3 text-center">[Map Placeholder]</div>
+      <button class="btn btn-success mt-2" onclick="alert('Referral note generated.')">Generate Referral Note</button>
+    </div>
+
+    <div id="educationSection" class="card p-4 mt-4" style="display:none">
+      <h4>🚨 Next Steps (Qué hacer ahora)</h4>
+      <ul>
+        <li>Do NOT drive. Use mototaxi or ambulance if possible.</li>
+        <li>Lay patient flat unless vomiting. Monitor consciousness.</li>
+        <li>Notify nearest health post. Provide name, symptoms, time.</li>
+        <li>Bring ID, medications, and emergency contact info.</li>
+        <li>Use local language tools if needed.</li>
+        <li>Document changes. Take photos or videos if safe.</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Timer + Language Logic -->
   <script>
     let timerSeconds = 0;
     let language = "en";
@@ -70,11 +121,23 @@
     const translations = {
       en: {
         title: "CráneoClave – NeuroPass",
-        subtitle: "AI-Guided Stroke Triage & Referral Tool"
+        subtitle: "AI-Guided Stroke Triage & Referral Tool",
+        checklistTitle: "Stroke Symptom Checklist",
+        face: "Facial droop",
+        arm: "Arm weakness",
+        speech: "Slurred speech",
+        vision: "Vision changes",
+        time: "Sudden onset"
       },
       es: {
         title: "CráneoClave – NeuroPass",
-        subtitle: "Herramienta de Triaje de ACV con IA"
+        subtitle: "Herramienta de Triaje de ACV con IA",
+        checklistTitle: "Lista de Síntomas de ACV",
+        face: "Parálisis facial",
+        arm: "Debilidad en el brazo",
+        speech: "Habla arrastrada",
+        vision: "Cambios en la visión",
+        time: "Inicio repentino"
       }
     };
 
@@ -91,6 +154,33 @@
       language = document.getElementById("languageSelect").value;
       const t = translations[language] || translations.en;
       document.title = t.title;
+      document.getElementById("checklistSection").style.display = "block";
+      document.getElementById("checklistTitle").textContent = t.checklistTitle;
+      document.querySelectorAll('[data-key]').forEach(el => {
+        el.textContent = t[el.dataset.key];
+      });
+    }
+
+    function speakChecklist() {
+      const synth = window.speechSynthesis;
+      const checklistItems = document.querySelectorAll('[data-key]');
+      let text = [...checklistItems].map(el => el.textContent).join(", ");
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = language;
+      synth.speak(utter);
+    }
+
+    function evaluateChecklist() {
+      const symptoms = document.querySelectorAll('input[name="symptom"]:checked');
+      if (symptoms.length >= 3) {
+        alert("Stroke likely. Proceed to pupil scan.");
+        document.getElementById("checklistSection").style.display = "none";
+        document.getElementById("scanSection").style.display = "block";
+        document.getElementById("mapSection").style.display = "block";
+        document.getElementById("educationSection").style.display = "block";
+      } else {
+        alert("Symptoms may not meet stroke threshold. Continue monitoring.");
+      }
     }
   </script>
 </body>
