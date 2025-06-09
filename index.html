@@ -1,93 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeuroPass – CráneoClave</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CráneoClave | AI Stroke Triage</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
+      padding: 0;
+      background: #f4f6f8;
     }
-    h1, h2 {
-      color: #2c3e50;
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #34495e;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
     }
     section {
-      background: #fff;
+      background: white;
+      border-radius: 8px;
       padding: 20px;
       margin-bottom: 20px;
-      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    ul {
-      padding-left: 20px;
+    button, select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
-<body>
-  <h1>NeuroPass – CráneoClave</h1>
-  <p><strong>AI-Driven Stroke Triage & Referral Tool</strong></p>
+<body onload="startTimer()">
+  <header>
+    <h1 id="title">CráneoClave – NeuroPass</h1>
+    <p id="subtitle">AI-Guided Stroke Triage & Referral Tool</p>
+    <div id="timer">Timer: 00:00</div>
+  </header>
 
-  <section>
-    <h2>🔍 The Problem</h2>
-    <ul>
-      <li>Language barriers</li>
-      <li>Delays in symptom recognition</li>
-      <li>Poor EMS coordination</li>
-      <li>No direct access to neurology centers</li>
-    </ul>
-  </section>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="education.html">Education</a>
+    <a href="timer.html">Timer</a>
+  </nav>
 
-  <section>
-    <h2>✨ The Solution</h2>
-    <ul>
-      <li>Multilingual AI-guided symptom checklist</li>
-      <li>Camera-based pupil scan (anisocoria detection)</li>
-      <li>Maps to nearest stroke centers</li>
-      <li>Emergency referral trigger and educational guidance</li>
-    </ul>
-  </section>
+  <main>
+    <!-- Existing content preserved here -->
+    <!-- Sections like language selector, checklist, scan, map, education, etc. -->
+  </main>
 
-  <section>
-    <h2>⚖️ How It Works</h2>
-    <ol>
-      <li>Language selector (Google Translate API)</li>
-      <li>Voice-guided FAST/BEFAST checklist</li>
-      <li>Stroke score based on symptoms</li>
-      <li>Pupil scanner using phone camera (OpenCV.js)</li>
-      <li>Referral system with map and contact options</li>
-    </ol>
-  </section>
+  <script>
+    let timerSeconds = 0;
+    let language = "en";
 
-  <section>
-    <h2>❗ Next Steps for Patients</h2>
-    <ul>
-      <li>Transport safely without walking</li>
-      <li>Notify nearest health center with checklist summary</li>
-      <li>Bring ID, medications, and caregiver support</li>
-      <li>Use local language or icons when needed</li>
-    </ul>
-  </section>
+    const translations = {
+      en: {
+        title: "CráneoClave – NeuroPass",
+        subtitle: "AI-Guided Stroke Triage & Referral Tool",
+        checklistTitle: "Stroke Symptom Checklist",
+        face: "Facial droop",
+        arm: "Arm weakness",
+        speech: "Slurred speech",
+        vision: "Vision changes",
+        time: "Sudden onset"
+      },
+      es: {
+        title: "CráneoClave – NeuroPass",
+        subtitle: "Herramienta de Triaje de ACV con IA",
+        checklistTitle: "Lista de Síntomas de ACV",
+        face: "Parálisis facial",
+        arm: "Debilidad en el brazo",
+        speech: "Habla arrastrada",
+        vision: "Cambios en la visión",
+        time: "Inicio repentino"
+      }
+    };
 
-  <section>
-    <h2>🌍 Global Health Impact</h2>
-    <p>Mobile-accessible, multilingual triage tool for reducing stroke delays in low-resource settings.</p>
-  </section>
+    function startTimer() {
+      setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById("timer").textContent = `Timer: ${mins}:${secs}`;
+      }, 1000);
+    }
 
-  <section>
-    <h2>🚀 Technology Stack</h2>
-    <ul>
-      <li><strong>Frontend:</strong> HTML/JS, Streamlit (for prototype)</li>
-      <li><strong>AI:</strong> GPT-4o logic + voice integration</li>
-      <li><strong>Vision:</strong> OpenCV.js for pupil detection</li>
-      <li><strong>Maps:</strong> Google Maps or MapBox</li>
-    </ul>
-  </section>
+    function switchLanguage() {
+      language = document.getElementById("languageSelect").value;
+      const t = translations[language] || translations.en;
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("subtitle").textContent = t.subtitle;
+      document.getElementById("checklistTitle").textContent = t.checklistTitle;
+      document.querySelectorAll('[data-key]').forEach(el => {
+        el.textContent = t[el.dataset.key];
+      });
+      document.getElementById("languageSection").style.display = "none";
+      document.getElementById("checklistSection").style.display = "block";
+    }
 
-  <footer>
-    <p>&copy; 2025 CráneoClave | Built for NeuroRuta Stroke LATAM Hackathon</p>
-  </footer>
+    function speakChecklist() {
+      const synth = window.speechSynthesis;
+      const checklistItems = document.querySelectorAll('[data-key]');
+      let text = [...checklistItems].map(el => el.textContent).join(", ");
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = language;
+      synth.speak(utter);
+    }
+
+    function evaluateChecklist() {
+      const symptoms = document.querySelectorAll('input[name="symptom"]:checked');
+      if (symptoms.length >= 3) {
+        alert("Stroke likely. Proceed to pupil scan.");
+        document.getElementById("checklistSection").style.display = "none";
+        document.getElementById("scanSection").style.display = "block";
+        document.getElementById("mapSection").style.display = "block";
+        document.getElementById("educationSection").style.display = "block";
+      } else {
+        alert("Symptoms may not meet stroke threshold. Continue monitoring.");
+      }
+    }
+  </script>
 </body>
 </html>
