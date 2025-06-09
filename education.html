@@ -2,82 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CráneoClave | Education</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stroke Education | CráneoClave</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f0f9ff, #ffffff);
     }
-    .content {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
+    .edu-header {
+      padding: 2rem 1rem;
+      text-align: center;
     }
-    h2, h3 {
-      margin-top: 1.5rem;
+    .edu-header h1 {
+      font-size: 2.5rem;
+    }
+    .flag-icon {
+      margin-right: 5px;
+    }
+    .accordion-button::after {
+      filter: brightness(0.5);
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">🧠 CráneoClave</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="education.html">Education</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="timer.html">Timer</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="timer.html">Timer</a></li>
         </ul>
+        <form class="d-flex">
+          <select id="languageSelect" class="form-select">
+            <option value="es">🇪🇸 Español</option>
+            <option value="pt">🇧🇷 Português</option>
+            <option value="qu">🇧🇴 Quechua</option>
+            <option value="gn">🇵🇾 Guaraní</option>
+            <option value="en" selected>🇺🇸 English</option>
+            <!-- Add other languages -->
+          </select>
+        </form>
       </div>
     </div>
   </nav>
 
-  <div class="content">
-    <h2>🚨 Recognizing a Stroke: Key Warning Signs</h2>
-    <ul>
-      <li><strong>Facial Drooping:</strong> One side of the face may droop or feel numb. Ask the person to smile.</li>
-      <li><strong>Arm Weakness:</strong> One arm may be weak or numb. Ask them to raise both arms.</li>
-      <li><strong>Speech Difficulty:</strong> Slurred or strange speech. Ask them to repeat a simple sentence.</li>
-      <li><strong>Vision Changes:</strong> Sudden loss or blurring in one or both eyes.</li>
-      <li><strong>Sudden Headache:</strong> Intense headache without cause, especially with vomiting.</li>
-      <li><strong>Balance Issues:</strong> Trouble walking, dizziness, or coordination loss.</li>
-    </ul>
-
-    <h3>🧠 Why Acting Fast Matters</h3>
-    <p>Time is brain! Immediate care can save lives and prevent permanent damage. Patients need access to clot-busting medication (tPA) or surgery within hours.</p>
-
-    <h3>👨‍👩‍👧‍👦 What Caregivers Can Do</h3>
-    <ul>
-      <li>Stay calm and keep the patient safe and flat (unless vomiting).</li>
-      <li>Do not allow the patient to walk or drink fluids.</li>
-      <li>Document symptoms: When did they begin? Are they worsening?</li>
-      <li>Take a photo or video to show emergency providers.</li>
-    </ul>
-
-    <h3>🌐 Local Language Tips</h3>
-    <p>This app supports Spanish, Portuguese, Quechua, and Guaraní. You can also use visual icons in the app if verbal language is limited.</p>
-
-    <h3>📋 Emergency Contact Prep</h3>
-    <ul>
-      <li>Bring ID and any medical documents if available.</li>
-      <li>Have emergency contact info ready (preferably written).</li>
-      <li>Pack a water bottle, light food, and cash if traveling far.</li>
-    </ul>
-
-    <p class="mt-4">Need more help? Visit <a href="index.html">Home</a> to run the checklist or return to the <a href="timer.html">Timer</a>.</p>
+  <div class="edu-header">
+    <h1>Know the Signs of Stroke</h1>
+    <p class="lead">Learn to recognize a stroke early — every second counts.</p>
   </div>
 
+  <div class="container mb-4">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">🧠 Use the BE FAST Method</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Sudden loss of balance or coordination.">B – Balance</li>
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Vision changes in one or both eyes.">E – Eyes</li>
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Face drooping on one side when smiling.">F – Face</li>
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Arm weakness or numbness.">A – Arms</li>
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Slurred or strange speech.">S – Speech</li>
+              <li class="list-group-item" data-bs-toggle="tooltip" title="Call emergency services right away.">T – Time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="accordion" id="strokeFAQ">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">
+                Why is early stroke detection important?
+              </button>
+            </h2>
+            <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#strokeFAQ">
+              <div class="accordion-body">
+                Brain cells begin to die within minutes of a stroke. Early recognition means quicker treatment and better recovery.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q2">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">
+                What if I don’t speak the local language?
+              </button>
+            </h2>
+            <div id="a2" class="accordion-collapse collapse" data-bs-parent="#strokeFAQ">
+              <div class="accordion-body">
+                CráneoClave supports multiple languages and picture-based communication to assist in rural or multilingual settings.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q3">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">
+                What can I do while waiting for help?
+              </button>
+            </h2>
+            <div id="a3" class="accordion-collapse collapse" data-bs-parent="#strokeFAQ">
+              <div class="accordion-body">
+                Keep the patient calm, flat, and monitored. Do not give food or drink. Prepare ID, medications, and referral info.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-3 text-muted">
+    © 2025 CráneoClave | Stroke education saves lives.
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltips.forEach(t => new bootstrap.Tooltip(t));
+  </script>
 </body>
 </html>
+
