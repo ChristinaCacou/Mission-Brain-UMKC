@@ -14,15 +14,23 @@
       background: linear-gradient(to bottom right, #e9f5ff, #fefefe);
     }
     .hero-section {
-      background: linear-gradient(to right, rgba(2, 168, 176, 0.9), rgba(2, 106, 115, 0.9)), url('https://upload.wikimedia.org/wikipedia/commons/e/e4/MRI_head_side_view.jpg') center/cover no-repeat;
-      color: white;
-      padding: 10vh 2rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+  background: 
+    linear-gradient(to right, rgba(2, 168, 176, 0.9), rgba(2, 106, 115, 0.9)),
+    url('https://upload.wikimedia.org/wikipedia/commons/3/36/Human_brain_MRI_sagittal_slice.jpg'),
+    url('https://upload.wikimedia.org/wikipedia/commons/1/19/Neuron.svg');
+  background-blend-mode: overlay, lighten;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, right bottom;
+  background-size: cover, 40%;
+  color: white;
+  padding: 10vh 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
     }
     .hero-title {
       font-size: 3.5rem;
