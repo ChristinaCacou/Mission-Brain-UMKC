@@ -3,72 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CranéoClave Education</title>
+  <title>CráneoClave | Education</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
+      background-color: #f9f9f9;
     }
-    header, nav {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-    nav a {
-      margin: 0 15px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 20px;
-      max-width: 800px;
+    .content {
+      max-width: 900px;
       margin: auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 2rem;
     }
-    h2 {
-      color: #2c3e50;
+    h2, h3 {
+      margin-top: 1.5rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>CranéoClave Education</h1>
-  </header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="education.html">Education</a>
-    <a href="timer.html">Timer</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">🧠 CráneoClave</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="education.html">Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="timer.html">Timer</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  <main>
-    <h2>Warning Signs of Stroke</h2>
+
+  <div class="content">
+    <h2>🚨 Recognizing a Stroke: Key Warning Signs</h2>
     <ul>
-      <li>Sudden numbness or weakness in the face, arm, or leg — especially on one side</li>
-      <li>Sudden confusion, trouble speaking, or understanding speech</li>
-      <li>Sudden trouble seeing in one or both eyes</li>
-      <li>Sudden trouble walking, dizziness, loss of balance or coordination</li>
-      <li>Sudden severe headache with no known cause</li>
+      <li><strong>Facial Drooping:</strong> One side of the face may droop or feel numb. Ask the person to smile.</li>
+      <li><strong>Arm Weakness:</strong> One arm may be weak or numb. Ask them to raise both arms.</li>
+      <li><strong>Speech Difficulty:</strong> Slurred or strange speech. Ask them to repeat a simple sentence.</li>
+      <li><strong>Vision Changes:</strong> Sudden loss or blurring in one or both eyes.</li>
+      <li><strong>Sudden Headache:</strong> Intense headache without cause, especially with vomiting.</li>
+      <li><strong>Balance Issues:</strong> Trouble walking, dizziness, or coordination loss.</li>
     </ul>
 
-    <h2>What To Do</h2>
+    <h3>🧠 Why Acting Fast Matters</h3>
+    <p>Time is brain! Immediate care can save lives and prevent permanent damage. Patients need access to clot-busting medication (tPA) or surgery within hours.</p>
+
+    <h3>👨‍👩‍👧‍👦 What Caregivers Can Do</h3>
     <ul>
-      <li>Do NOT drive yourself</li>
-      <li>Call emergency services or notify a health post</li>
-      <li>Lay the patient flat unless vomiting</li>
-      <li>Prepare ID, medications, contact info</li>
-      <li>Document symptoms and time of onset</li>
+      <li>Stay calm and keep the patient safe and flat (unless vomiting).</li>
+      <li>Do not allow the patient to walk or drink fluids.</li>
+      <li>Document symptoms: When did they begin? Are they worsening?</li>
+      <li>Take a photo or video to show emergency providers.</li>
     </ul>
 
-    <h2>Use Local Language Tools</h2>
-    <p>Picture icons, translated instructions, and verbal aids are available in the main tool.</p>
-  </main>
+    <h3>🌐 Local Language Tips</h3>
+    <p>This app supports Spanish, Portuguese, Quechua, and Guaraní. You can also use visual icons in the app if verbal language is limited.</p>
+
+    <h3>📋 Emergency Contact Prep</h3>
+    <ul>
+      <li>Bring ID and any medical documents if available.</li>
+      <li>Have emergency contact info ready (preferably written).</li>
+      <li>Pack a water bottle, light food, and cash if traveling far.</li>
+    </ul>
+
+    <p class="mt-4">Need more help? Visit <a href="index.html">Home</a> to run the checklist or return to the <a href="timer.html">Timer</a>.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
