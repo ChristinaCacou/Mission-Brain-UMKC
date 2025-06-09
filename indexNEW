@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPass – CráneoClave</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>NeuroPass – CráneoClave</h1>
+  <p><strong>AI-Driven Stroke Triage & Referral Tool</strong></p>
+
+  <section>
+    <h2>🔍 The Problem</h2>
+    <ul>
+      <li>Language barriers</li>
+      <li>Delays in symptom recognition</li>
+      <li>Poor EMS coordination</li>
+      <li>No direct access to neurology centers</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>✨ The Solution</h2>
+    <ul>
+      <li>Multilingual AI-guided symptom checklist</li>
+      <li>Camera-based pupil scan (anisocoria detection)</li>
+      <li>Maps to nearest stroke centers</li>
+      <li>Emergency referral trigger and educational guidance</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>⚖️ How It Works</h2>
+    <ol>
+      <li>Language selector (Google Translate API)</li>
+      <li>Voice-guided FAST/BEFAST checklist</li>
+      <li>Stroke score based on symptoms</li>
+      <li>Pupil scanner using phone camera (OpenCV.js)</li>
+      <li>Referral system with map and contact options</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>❗ Next Steps for Patients</h2>
+    <ul>
+      <li>Transport safely without walking</li>
+      <li>Notify nearest health center with checklist summary</li>
+      <li>Bring ID, medications, and caregiver support</li>
+      <li>Use local language or icons when needed</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🌏 Global Health Impact</h2>
+    <p>Mobile-accessible, multilingual triage tool for reducing stroke delays in low-resource settings.</p>
+  </section>
+
+  <section>
+    <h2>🚀 Technology Stack</h2>
+    <ul>
+      <li><strong>Frontend:</strong> HTML/JS, Streamlit (for prototype)</li>
+      <li><strong>AI:</strong> GPT-4o logic + voice integration</li>
+      <li><strong>Vision:</strong> OpenCV.js for pupil detection</li>
+      <li><strong>Maps:</strong> Google Maps or MapBox</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CráneoClave | Built for NeuroRuta Stroke LATAM Hackathon</p>
+  </footer>
+</body>
+</html>
