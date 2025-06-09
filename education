@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CranéoClave Education</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+    header, nav {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CranéoClave Education</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="education.html">Education</a>
+    <a href="timer.html">Timer</a>
+  </nav>
+  <main>
+    <h2>Warning Signs of Stroke</h2>
+    <ul>
+      <li>Sudden numbness or weakness in the face, arm, or leg — especially on one side</li>
+      <li>Sudden confusion, trouble speaking, or understanding speech</li>
+      <li>Sudden trouble seeing in one or both eyes</li>
+      <li>Sudden trouble walking, dizziness, loss of balance or coordination</li>
+      <li>Sudden severe headache with no known cause</li>
+    </ul>
+
+    <h2>What To Do</h2>
+    <ul>
+      <li>Do NOT drive yourself</li>
+      <li>Call emergency services or notify a health post</li>
+      <li>Lay the patient flat unless vomiting</li>
+      <li>Prepare ID, medications, contact info</li>
+      <li>Document symptoms and time of onset</li>
+    </ul>
+
+    <h2>Use Local Language Tools</h2>
+    <p>Picture icons, translated instructions, and verbal aids are available in the main tool.</p>
+  </main>
+</body>
+</html>
