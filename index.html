@@ -104,6 +104,12 @@
     <div class="my-4">
       <a href="checklist.html" class="btn btn-primary btn-lg">➡️ Start Symptom Checklist</a>
     </div>
+    <div class="my-4">
+      <button class="btn btn-success btn-lg" onclick="completeChecklist()">✅ Complete Symptom Checklist</button>
+    </div>
+    <div id="referralSection" class="my-4" style="display: none;">
+      <a id="referralLink" class="btn btn-danger btn-lg">📍 Find Stroke Center</a>
+    </div>
   </div>
 
   <footer class="footer">CráneoClave &copy; 2025 – Empowering Stroke Triage Access</footer>
@@ -140,6 +146,25 @@
       const utterance = new SpeechSynthesisUtterance("Welcome to CráneoClave. Use this tool to recognize stroke signs and act quickly.");
       utterance.lang = "en-US";
       window.speechSynthesis.speak(utterance);
+    }
+
+    function completeChecklist() {
+      sessionStorage.setItem("checklistComplete", "true");
+      document.getElementById("referralSection").style.display = "block";
+    }
+
+    window.onload = function () {
+      const checklistDone = sessionStorage.getItem("checklistComplete") === "true";
+      if (checklistDone) {
+        document.getElementById("referralSection").style.display = "block";
+      }
+      const referralLink = document.getElementById('referralLink');
+      if (referralLink) {
+        referralLink.onclick = function () {
+          const timerStart = sessionStorage.getItem("timerStart") || "unknown";
+          window.location.href = `map.html?startTime=${encodeURIComponent(timerStart)}`;
+        };
+      }
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
