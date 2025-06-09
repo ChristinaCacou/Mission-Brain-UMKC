@@ -1,94 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeuroPass – CráneoClave</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CráneoClave | AI Stroke Triage</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
+      padding: 0;
+      background: #f4f6f8;
     }
-    h1, h2 {
-      color: #2c3e50;
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
     }
     section {
-      background: #fff;
+      background: white;
+      border-radius: 8px;
       padding: 20px;
       margin-bottom: 20px;
-      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    ul {
-      padding-left: 20px;
+    button, select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
     }
   </style>
 </head>
-<body>
-  <h1>NeuroPass – CráneoClave</h1>
-  <p><strong>AI-Driven Stroke Triage & Referral Tool</strong></p>
+<body onload="startTimer()">
+  <header>
+    <h1 id="title">CráneoClave – NeuroPass</h1>
+    <p id="subtitle">AI-Guided Stroke Triage & Referral Tool</p>
+    <div id="timer">Timer: 00:00</div>
+  </header>
 
-  <section>
-    <h2>🔍 The Problem</h2>
-    <ul>
-      <li>Language barriers</li>
-      <li>Delays in symptom recognition</li>
-      <li>Poor EMS coordination</li>
-      <li>No direct access to neurology centers</li>
-    </ul>
-  </section>
+  <main>
+    <section id="languageSection">
+      <h2>Select Your Language</h2>
+      <select id="languageSelect" onchange="switchLanguage()">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="qu">Quechua</option>
+        <option value="gn">Guaraní</option>
+      </select>
+    </section>
 
-  <section>
-    <h2>✨ The Solution</h2>
-    <ul>
-      <li>Multilingual AI-guided symptom checklist</li>
-      <li>Camera-based pupil scan (anisocoria detection)</li>
-      <li>Maps to nearest stroke centers</li>
-      <li>Emergency referral trigger and educational guidance</li>
-    </ul>
-  </section>
+    <section id="checklistSection" style="display:none">
+      <h2 id="checklistTitle">Stroke Symptom Checklist</h2>
+      <form id="checklistForm">
+        <label><input type="checkbox" name="symptom" value="face"> <span data-key="face">Facial droop</span></label><br>
+        <label><input type="checkbox" name="symptom" value="arm"> <span data-key="arm">Arm weakness</span></label><br>
+        <label><input type="checkbox" name="symptom" value="speech"> <span data-key="speech">Slurred speech</span></label><br>
+        <label><input type="checkbox" name="symptom" value="vision"> <span data-key="vision">Vision changes</span></label><br>
+        <label><input type="checkbox" name="symptom" value="time"> <span data-key="time">Sudden onset</span></label><br>
+        <button type="button" onclick="evaluateChecklist()">Submit</button>
+        <button type="button" onclick="speakChecklist()">🔊 Speak</button>
+      </form>
+    </section>
 
-  <section>
-    <h2>⚖️ How It Works</h2>
-    <ol>
-      <li>Language selector (Google Translate API)</li>
-      <li>Voice-guided FAST/BEFAST checklist</li>
-      <li>Stroke score based on symptoms</li>
-      <li>Pupil scanner using phone camera (OpenCV.js)</li>
-      <li>Referral system with map and contact options</li>
-    </ol>
-  </section>
+    <section id="scanSection" style="display:none">
+      <h2>Pupil Symmetry Scan</h2>
+      <p>This step uses your phone's camera to check for unequal pupils (anisocoria).</p>
+      <button onclick="alert('Simulated scan result: Pupils symmetric')">Run Pupil Scan</button>
+    </section>
 
-  <section>
-    <h2>❗ Next Steps for Patients</h2>
-    <ul>
-      <li>Transport safely without walking</li>
-      <li>Notify nearest health center with checklist summary</li>
-      <li>Bring ID, medications, and caregiver support</li>
-      <li>Use local language or icons when needed</li>
-    </ul>
-  </section>
+    <section id="mapSection" style="display:none">
+      <h2>4. Nearest Stroke Center</h2>
+      <p>We are using your location to find the nearest CT-capable hospital.</p>
+      <div id="mapPlaceholder" style="background:#ddd;height:200px;text-align:center;padding-top:70px;">[Map Placeholder]</div>
+      <button onclick="alert('Referral note generated.')">Generate Referral Note</button>
+    </section>
 
-  <section>
-    <h2>🌍 Global Health Impact</h2>
-    <p>Mobile-accessible, multilingual triage tool for reducing stroke delays in low-resource settings.</p>
-  </section>
+    <section id="educationSection" style="display:none">
+      <h2>🚨 Next Steps (Qué hacer ahora)</h2>
+      <ul>
+        <li>Do NOT drive. Use a mototaxi or call an ambulance if possible.</li>
+        <li>Lay patient flat unless vomiting. Monitor consciousness.</li>
+        <li>Notify the nearest health post. Sample script provided.</li>
+        <li>Bring ID, medications, and emergency contacts.</li>
+        <li>Use picture-based or translated tools for communication.</li>
+        <li>Keep a log of symptoms. Use the camera to document safely.</li>
+        <li>Inform family and prepare for transport.</li>
+      </ul>
+      <p><strong>Sample Script:</strong> “Paciente con signos de derrame cerebral y pupilas diferentes. Empezó a las [TIME].”</p>
+    </section>
+  </main>
 
-  <section>
-    <h2>🚀 Technology Stack</h2>
-    <ul>
-      <li><strong>Frontend:</strong> HTML/JS, Streamlit (for prototype)</li>
-      <li><strong>AI:</strong> GPT-4o logic + voice integration</li>
-      <li><strong>Vision:</strong> OpenCV.js for pupil detection</li>
-      <li><strong>Maps:</strong> Google Maps or MapBox</li>
-    </ul>
-  </section>
+  <script>
+    let timerSeconds = 0;
+    function startTimer() {
+      setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById("timer").textContent = `Timer: ${mins}:${secs}`;
+      }, 1000);
+    }
 
-  <footer>
-    <p>&copy; 2025 CráneoClave | Built for NeuroRuta Stroke LATAM Hackathon</p>
-  </footer>
+    function proceedToChecklist() {
+      const lang = document.getElementById("languageSelect").value;
+      if (lang) {
+        document.getElementById("languageSection").style.display = "none";
+        document.getElementById("checklistSection").style.display = "block";
+      }
+    }
+
+    function evaluateChecklist() {
+      const symptoms = document.querySelectorAll('input[name="symptom"]:checked');
+      if (symptoms.length >= 3) {
+        alert("Stroke likely. Proceed to pupil scan.");
+        document.getElementById("checklistSection").style.display = "none";
+        document.getElementById("scanSection").style.display = "block";
+        document.getElementById("mapSection").style.display = "block";
+        document.getElementById("educationSection").style.display = "block";
+      } else {
+        alert("Symptoms may not meet stroke threshold. Continue monitoring.");
+      }
+    }
+  </script>
 </body>
 </html>
-

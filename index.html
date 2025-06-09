@@ -43,16 +43,16 @@
 </head>
 <body onload="startTimer()">
   <header>
-    <h1>CráneoClave – NeuroPass</h1>
-    <p>AI-Guided Stroke Triage & Referral Tool</p>
+    <h1 id="title">CráneoClave – NeuroPass</h1>
+    <p id="subtitle">AI-Guided Stroke Triage & Referral Tool</p>
     <div id="timer">Timer: 00:00</div>
   </header>
 
   <main>
     <section id="languageSection">
-      <h2>1. Select Your Language</h2>
-      <select id="languageSelect" onchange="proceedToChecklist()">
-        <option value="">-- Choose Language --</option>
+      <h2>Select Your Language</h2>
+      <select id="languageSelect" onchange="switchLanguage()">
+        <option value="en">English</option>
         <option value="es">Español</option>
         <option value="pt">Português</option>
         <option value="qu">Quechua</option>
@@ -61,19 +61,20 @@
     </section>
 
     <section id="checklistSection" style="display:none">
-      <h2>2. Stroke Symptom Checklist</h2>
+      <h2 id="checklistTitle">Stroke Symptom Checklist</h2>
       <form id="checklistForm">
-        <label><input type="checkbox" name="symptom" value="face"> Facial droop</label><br>
-        <label><input type="checkbox" name="symptom" value="arm"> Arm weakness</label><br>
-        <label><input type="checkbox" name="symptom" value="speech"> Slurred speech</label><br>
-        <label><input type="checkbox" name="symptom" value="vision"> Vision changes</label><br>
-        <label><input type="checkbox" name="symptom" value="time"> Sudden onset</label><br>
+        <label><input type="checkbox" name="symptom" value="face"> <span data-key="face">Facial droop</span></label><br>
+        <label><input type="checkbox" name="symptom" value="arm"> <span data-key="arm">Arm weakness</span></label><br>
+        <label><input type="checkbox" name="symptom" value="speech"> <span data-key="speech">Slurred speech</span></label><br>
+        <label><input type="checkbox" name="symptom" value="vision"> <span data-key="vision">Vision changes</span></label><br>
+        <label><input type="checkbox" name="symptom" value="time"> <span data-key="time">Sudden onset</span></label><br>
         <button type="button" onclick="evaluateChecklist()">Submit</button>
+        <button type="button" onclick="speakChecklist()">🔊 Speak</button>
       </form>
     </section>
 
     <section id="scanSection" style="display:none">
-      <h2>3. Pupil Symmetry Scan</h2>
+      <h2>Pupil Symmetry Scan</h2>
       <p>This step uses your phone's camera to check for unequal pupils (anisocoria).</p>
       <button onclick="alert('Simulated scan result: Pupils symmetric')">Run Pupil Scan</button>
     </section>
