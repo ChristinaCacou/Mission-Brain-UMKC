@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stroke Education | CráneoClave</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to bottom right, #f5f7fa, #e0ecff);
+      background: linear-gradient(to bottom right, #f8f9fa, #e6f0ff);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .card {
-      margin-bottom: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
     }
     .edu-header {
       margin-top: 2rem;
     }
-    .dropdown-language {
-      margin-left: auto;
+    .interactive-box {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .quiz-question {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">🧠 CráneoClave</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="education.html">Education</a></li>
           <li class="nav-item"><a class="nav-link" href="timer.html">Timer</a></li>
         </ul>
-        <select class="form-select w-auto dropdown-language" onchange="speakText()">
-          <option selected>🌎 Español</option>
-          <option>Português</option>
-          <option>English</option>
-          <option>Quechua</option>
-          <option>Guaraní</option>
-        </select>
       </div>
     </div>
   </nav>
 
   <div class="container edu-header">
-    <h1 class="text-center mt-4">🧠 Know the Signs of Stroke</h1>
-    <p class="text-center mb-4">Time is brain — act fast, act informed</p>
+    <h1 class="text-center">🧠 Recognize the Signs of Stroke</h1>
+    <p class="text-center">Time is brain — know what to look for and what to do</p>
 
     <div class="card">
       <div class="card-body">
@@ -67,61 +65,51 @@
       <div class="card-body">
         <h5 class="card-title">🧩 Additional Symptoms</h5>
         <ul>
-          <li>Sudden numbness or weakness (especially on one side)</li>
-          <li>Confusion, trouble speaking or understanding</li>
-          <li>Vision problems in one or both eyes</li>
-          <li>Dizziness, loss of balance or coordination</li>
+          <li>Sudden confusion or trouble understanding</li>
+          <li>Sudden numbness or weakness in face, arm, or leg — especially on one side</li>
+          <li>Trouble seeing in one or both eyes</li>
           <li>Severe headache with no known cause</li>
+          <li>Loss of balance or coordination</li>
         </ul>
       </div>
     </div>
 
+    <div class="interactive-box">
+      <h5>🧠 Quick Quiz: Which is a stroke sign?</h5>
+      <p class="quiz-question">Which of the following is a typical sign of stroke?</p>
+      <button class="btn btn-outline-primary w-100 my-1" onclick="checkAnswer(false)">Fever over 101°F</button>
+      <button class="btn btn-outline-primary w-100 my-1" onclick="checkAnswer(true)">Sudden arm weakness</button>
+      <button class="btn btn-outline-primary w-100 my-1" onclick="checkAnswer(false)">Chronic back pain</button>
+      <p id="quiz-feedback" class="mt-2"></p>
+    </div>
+
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">🌐 Local Language Support</h5>
-        <p>
-          CráneoClave offers multilingual support: Español, Português, Quechua, Guaraní, and more.
-          Picture icons and audio help make understanding easier for everyone.
+        <h5 class="card-title">🌎 Local Language Tools</h5>
+        <p class="card-text">
+          CráneoClave supports multiple languages (Español, Português, Quechua, Guaraní, English, and more) and uses picture icons for accessibility.
         </p>
       </div>
     </div>
 
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">🚑 What to Do</h5>
+        <h5 class="card-title">📝 What to Do</h5>
         <ol>
-          <li>Start the timer. Note the **exact time** symptoms began.</li>
-          <li>Use the checklist tool on the home screen.</li>
-          <li>Do NOT drive. Use safe transport or call emergency services.</li>
-          <li>Bring ID, medication list, and a symptom log to the hospital.</li>
+          <li>Start the timer and note the time of symptom onset.</li>
+          <li>Use the checklist tool to confirm signs.</li>
+          <li>Never drive — arrange safe transport or notify a local clinic.</li>
+          <li>Prepare the patient’s ID, medical history, and symptoms log.</li>
         </ol>
       </div>
     </div>
   </div>
 
   <script>
-    function speakText() {
-      const selectedLang = document.querySelector('.dropdown-language').value;
-      const text = "Learn to recognize stroke signs early. Time is brain.";
-      const utterance = new SpeechSynthesisUtterance(text);
-
-      switch (selectedLang) {
-        case "Español":
-          utterance.lang = 'es-ES';
-          break;
-        case "Português":
-          utterance.lang = 'pt-BR';
-          break;
-        case "English":
-          utterance.lang = 'en-US';
-          break;
-        case "Quechua":
-        case "Guaraní":
-          utterance.lang = 'es-ES'; // fallback for now
-          break;
-      }
-
-      speechSynthesis.speak(utterance);
+    function checkAnswer(isCorrect) {
+      const feedback = document.getElementById("quiz-feedback");
+      feedback.innerText = isCorrect ? "✅ Correct! Sudden arm weakness is a stroke sign." : "❌ Not quite. Try again.";
+      feedback.style.color = isCorrect ? "green" : "red";
     }
   </script>
 
