@@ -1,4 +1,3 @@
-<!-- Save this as index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +61,8 @@
   </nav>
 
   <div class="container main-header text-center">
-    <h1>Welcome to CráneoClave</h1>
-    <p class="lead">Use this guided triage tool to recognize stroke signs and take quick action.</p>
+    <h1 id="welcomeHeader">Welcome to CráneoClave</h1>
+    <p class="lead" id="welcomeSubheader">Use this guided triage tool to recognize stroke signs and take quick action.</p>
     <p class="text-muted">Language selected: <span id="currentLanguage">English</span></p>
 
     <div class="my-4">
@@ -73,8 +72,7 @@
     </div>
 
     <div class="my-4">
-      <button class="btn btn-outline-info" onclick="logEvent('Symptom start noted')">Log Symptom Start</button>
-      <button class="btn btn-outline-success" onclick="logEvent('Checklist completed')">Log Checklist</button>
+      <a href="checklist.html" class="btn btn-primary">➡️ Start Symptom Checklist</a>
     </div>
 
     <div class="accordion" id="nextStepsAccordion">
@@ -103,10 +101,26 @@
   </div>
 
   <script>
+    const translations = {
+      es: { welcome: "Bienvenido a CráneoClave", subheader: "Usa esta herramienta para reconocer signos de derrame cerebral y actuar rápido." },
+      pt: { welcome: "Bem-vindo ao CráneoClave", subheader: "Use esta ferramenta para reconhecer sinais de AVC e agir rapidamente." },
+      qu: { welcome: "CráneoClave-man hamuqkuyki", subheader: "Kay ruwanawan stroke ñawinchaykita ruwachiy." },
+      gn: { welcome: "Eguahẽ CráneoClave-pe", subheader: "Emplea ko tembiapo rehegua umi tasy ñemohendápe." },
+      en: { welcome: "Welcome to CráneoClave", subheader: "Use this guided triage tool to recognize stroke signs and take quick action." },
+      fr: { welcome: "Bienvenue à CráneoClave", subheader: "Utilisez cet outil pour détecter les signes d’AVC rapidement." },
+      // add other translations as needed
+    };
+
     function setLanguage() {
       const langSelect = document.getElementById("languageSelect");
+      const selectedLang = langSelect.value;
       const selectedText = langSelect.options[langSelect.selectedIndex].text;
       document.getElementById("currentLanguage").textContent = selectedText;
+
+      if (translations[selectedLang]) {
+        document.getElementById("welcomeHeader").textContent = translations[selectedLang].welcome;
+        document.getElementById("welcomeSubheader").textContent = translations[selectedLang].subheader;
+      }
     }
 
     function initializeTimer() {
