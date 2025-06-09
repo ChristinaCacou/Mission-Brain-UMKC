@@ -2,95 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CráneoClave | Stroke Timer</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stroke Timer | CráneoClave</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #e9f5ff, #fefefe);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f5fbff, #ffffff);
     }
-    #timerDisplay {
-      font-size: 2rem;
+    .timer-header {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .timer-display {
+      font-size: 3rem;
+      margin: 2rem 0;
       font-weight: bold;
-      color: #dc3545;
+      text-align: center;
     }
-    .language-flag {
-      font-size: 1.2rem;
+    .btn-group {
+      justify-content: center;
+      display: flex;
+      gap: 1rem;
     }
   </style>
 </head>
-<body onload="startTimer()">
+<body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">🧠 CráneoClave</a>
+      <a class="navbar-brand" href="index.html">🧠 CráneoClave</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="education.html">Education</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="timer.html">Timer</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link active" href="timer.html">Timer</a></li>
         </ul>
         <form class="d-flex">
-          <select id="languageSelect" class="form-select" onchange="setLanguage()">
+          <select id="languageSelect" class="form-select">
             <option value="es">🇪🇸 Español</option>
-            <option value="pt">🇵🇹 Português</option>
+            <option value="pt">🇧🇷 Português</option>
             <option value="qu">🇧🇴 Quechua</option>
             <option value="gn">🇵🇾 Guaraní</option>
-            <option value="en">🇺🇸 English</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="hi">🇮🇳 हिंदी</option>
+            <option value="en" selected>🇺🇸 English</option>
+            <!-- Add additional languages -->
           </select>
         </form>
       </div>
     </div>
   </nav>
 
-  <div class="container text-center mt-5">
-    <h1 class="mb-4">⏱️ Stroke Response Timer</h1>
-    <p class="lead">Time matters. The brain is losing cells every second.</p>
-    <div id="timerDisplay" class="my-3">00:00</div>
-    <button class="btn btn-danger btn-lg" onclick="resetTimer()">🔁 Reset Timer</button>
+  <div class="container timer-header">
+    <h1>🕒 Time Since Symptom Onset</h1>
+    <p class="lead">Track every second — rapid care saves brain tissue.</p>
   </div>
 
+  <div class="timer-display" id="timer">00:00:00</div>
+
+  <div class="btn-group mb-4">
+    <button class="btn btn-success" onclick="startTimer()">Start</button>
+    <button class="btn btn-warning" onclick="stopTimer()">Stop</button>
+    <button class="btn btn-danger" onclick="resetTimer()">Reset</button>
+  </div>
+
+  <footer class="text-center py-3 text-muted">
+    © 2025 CráneoClave | Timer for acute stroke care.
+  </footer>
+
   <script>
-    let secondsElapsed = 0;
-    let intervalId;
+    let startTime, timerInterval;
+    const display = document.getElementById("timer");
+
+    function updateDisplay() {
+      const elapsed = Date.now() - startTime;
+      const hrs = Math.floor(elapsed / 3600000);
+      const mins = Math.floor((elapsed % 3600000) / 60000);
+      const secs = Math.floor((elapsed % 60000) / 1000);
+      display.textContent = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
 
     function startTimer() {
-      intervalId = setInterval(() => {
-        secondsElapsed++;
-        let mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-        let secs = String(secondsElapsed % 60).padStart(2, '0');
-        document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
-      }, 1000);
+      if (!timerInterval) {
+        startTime = Date.now() - (timerInterval ? Date.now() - startTime : 0);
+        timerInterval = setInterval(updateDisplay, 1000);
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
     }
 
     function resetTimer() {
-      clearInterval(intervalId);
-      secondsElapsed = 0;
-      document.getElementById('timerDisplay').textContent = '00:00';
-      startTimer();
+      stopTimer();
+      display.textContent = "00:00:00";
     }
 
-    function setLanguage() {
-      const lang = document.getElementById("languageSelect").value;
-      alert("Language set to: " + lang);
-      // You can insert logic here to load language-specific content later.
-    }
+    window.onload = startTimer;
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
