@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Timer - CráneoClave</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    header, nav {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 40px 20px;
+    }
+    #liveTimer {
+      font-size: 48px;
+      font-weight: bold;
+      color: #e74c3c;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body onload="startLiveTimer()">
+  <header>
+    <h1>Timer – CráneoClave</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="education.html">Education</a>
+    <a href="timer.html">Timer</a>
+  </nav>
+  <main>
+    <p>This timer tracks how long it's been since the stroke triage process began.</p>
+    <div id="liveTimer">00:00</div>
+  </main>
+
+  <script>
+    let seconds = 0;
+    function startLiveTimer() {
+      setInterval(() => {
+        seconds++;
+        const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const secs = String(seconds % 60).padStart(2, '0');
+        document.getElementById("liveTimer").textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
